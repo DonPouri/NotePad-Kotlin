@@ -5,7 +5,11 @@ plugins {
 
 android {
     namespace = "ir.beyond.notepad"
-    compileSdk = 34
+    compileSdk = 35
+
+    buildFeatures{
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "ir.beyond.notepad"
