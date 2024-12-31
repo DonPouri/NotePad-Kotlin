@@ -1,5 +1,6 @@
 package ir.beyond.notepad.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.beyond.notepad.databinding.ActivityMainBinding
@@ -13,5 +14,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.imgAddNotes.setOnClickListener {
+            val intent = Intent(this , AddNotesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
