@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">NotePad</string>
     <string name="recycle_bin">recycle bin</string>
+    <string name="subject">subject</string>
+    <string name="detail">detail</string>
+    <string name="save">save</string>
+    <string name="cancel">cancel</string>
 </resources>
