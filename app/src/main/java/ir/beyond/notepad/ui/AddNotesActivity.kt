@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import ir.amozeshgam.persiandate.PersianDate
 import ir.beyond.notepad.R
 import ir.beyond.notepad.databinding.ActivityAddNotesBinding
 import ir.beyond.notepad.db.DBHelper
@@ -47,7 +48,13 @@ class AddNotesActivity : AppCompatActivity() {
 
     private fun getDate(): String {
 
-        return "test"
+        val persianDate = PersianDate()
+
+        val currentDate = "${persianDate.year}/${persianDate.month}/${persianDate.day}"
+
+        val currentTime = "${persianDate.hour}/${persianDate.min}"
+
+        return "$currentDate | $currentTime"
 
     }
 
