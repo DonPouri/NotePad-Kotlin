@@ -30,15 +30,15 @@ class AddNotesActivity : AppCompatActivity() {
 
             if (title.isNotEmpty()) {
 
-                val notes = DBNotesModel(0, title, detail, "0", getDate())
+                val notes = DBNotesModel(0, title, detail, DBHelper.FALSE_STATE, getDate())
                 val resualt = dao.saveNotes(notes)
                 if (resualt){
-                    Toast.makeText(this, "saved!", Toast.LENGTH_SHORT).show()
+                    showText("saved!")
                     finish()
-                }else Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+                }else showText("error")
 
             } else
-                Toast.makeText(this, "subject cant be empty", Toast.LENGTH_SHORT).show()
+                showText("subject cant be empty")
 
         }
         binding.btnCancel.setOnClickListener {finish()}
@@ -48,6 +48,12 @@ class AddNotesActivity : AppCompatActivity() {
     private fun getDate(): String {
 
         return "test"
+
+    }
+
+    private fun showText(text:String){
+
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
 
     }
 }

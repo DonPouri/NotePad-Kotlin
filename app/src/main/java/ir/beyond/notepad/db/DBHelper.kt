@@ -17,6 +17,9 @@ class DBHelper(context: Context):SQLiteOpenHelper(context , DB_NAME , null , DB_
         const val NOTES_DETAIL="detail"
         const val NOTES_DELETE_STATE="deleteState"
         const val NOTES_DATE="date"
+
+        const val TRUE_STATE = "1"
+        const val FALSE_STATE = "0"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
