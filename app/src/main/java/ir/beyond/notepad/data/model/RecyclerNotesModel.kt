@@ -1,4 +1,4 @@
-package ir.beyond.notepad.adapter
+package ir.beyond.notepad.data.model
 
 data class RecyclerNotesModel(
     val id:Int ,

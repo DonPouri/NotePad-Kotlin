@@ -1,11 +1,11 @@
-package ir.beyond.notepad.db.dao
+package ir.beyond.notepad.data.dao
 
 import android.content.ContentValues
 import android.database.Cursor
 import android.util.Log
-import ir.beyond.notepad.adapter.RecyclerNotesModel
-import ir.beyond.notepad.db.DBHelper
-import ir.beyond.notepad.db.model.DBNotesModel
+import ir.beyond.notepad.data.model.RecyclerNotesModel
+import ir.beyond.notepad.data.DBHelper
+import ir.beyond.notepad.data.model.DBNotesModel
 
 class Notes_Dao(private val db:DBHelper
 ) {

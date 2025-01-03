@@ -1,9 +1,9 @@
 package ir.beyond.notepad.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ir.beyond.notepad.data.model.RecyclerNotesModel
 import ir.beyond.notepad.databinding.ListItemNotesBinding
 
 class NotesAdapter(

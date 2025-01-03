@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ir.beyond.notepad.adapter.NotesAdapter
 import ir.beyond.notepad.databinding.ActivityMainBinding
-import ir.beyond.notepad.db.DBHelper
-import ir.beyond.notepad.db.dao.Notes_Dao
+import ir.beyond.notepad.data.DBHelper
+import ir.beyond.notepad.data.dao.Notes_Dao
 
 class MainActivity : AppCompatActivity() {
 

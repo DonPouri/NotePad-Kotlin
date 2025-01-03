@@ -1,4 +1,4 @@
-package ir.beyond.notepad.db.model
+package ir.beyond.notepad.data.model
 
 class DBNotesModel(
     var id :Int,

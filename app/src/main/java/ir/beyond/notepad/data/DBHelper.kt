@@ -1,4 +1,4 @@
-package ir.beyond.notepad.db
+package ir.beyond.notepad.data
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

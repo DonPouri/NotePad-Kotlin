@@ -2,16 +2,12 @@ package ir.beyond.notepad.ui
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import ir.amozeshgam.persiandate.PersianDate
-import ir.beyond.notepad.R
+import ir.beyond.notepad.utils.PersianDate
 import ir.beyond.notepad.databinding.ActivityAddNotesBinding
-import ir.beyond.notepad.db.DBHelper
-import ir.beyond.notepad.db.dao.Notes_Dao
-import ir.beyond.notepad.db.model.DBNotesModel
+import ir.beyond.notepad.data.DBHelper
+import ir.beyond.notepad.data.dao.Notes_Dao
+import ir.beyond.notepad.data.model.DBNotesModel
 
 class AddNotesActivity : AppCompatActivity() {
 
