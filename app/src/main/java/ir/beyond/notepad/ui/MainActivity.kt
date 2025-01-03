@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         initRecycler()
     }
 
