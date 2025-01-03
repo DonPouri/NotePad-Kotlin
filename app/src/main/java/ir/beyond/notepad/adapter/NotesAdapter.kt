@@ -8,7 +8,7 @@ import ir.beyond.notepad.databinding.ListItemNotesBinding
 
 class NotesAdapter(
     private val context: Activity ,
-    private val allData : ArrayList<RecyclerNotesModel>
+    private var allData : ArrayList<RecyclerNotesModel>
     ):RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
 
@@ -33,6 +33,13 @@ class NotesAdapter(
 
         }
 
+    }
+
+    fun changeData(data:ArrayList<RecyclerNotesModel>){
+        if (data.size > allData.size){
+            allData = data
+            notifyItemInserted(allData.size)
+        }
     }
 
 }

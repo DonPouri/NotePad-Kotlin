@@ -13,6 +13,8 @@ import ir.beyond.notepad.data.dao.Notes_Dao
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var dao : Notes_Dao
+    private lateinit var adapter  : NotesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +31,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        initRecycler()
+        val data = dao.getNotesForRecycler(DBHelper.FALSE_STATE)
+        adapter.changeData(data)
     }
 
     private fun initRecycler(){
 
-        val dao = Notes_Dao(DBHelper(this))
+        dao = Notes_Dao(DBHelper(this))
         val data = dao.getNotesForRecycler(DBHelper.FALSE_STATE)
+        adapter = NotesAdapter(this , data)
 
         binding.recyclerNotes.layoutManager = LinearLayoutManager(
             this , RecyclerView.VERTICAL , false)
-        binding.recyclerNotes.adapter = NotesAdapter(this , data)
+        binding.recyclerNotes.adapter = adapter
     }
 }
