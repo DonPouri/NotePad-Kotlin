@@ -2,7 +2,11 @@ package ir.beyond.notepad.adapter
 
 import android.app.Activity
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.recyclerview.widget.RecyclerView
+import ir.beyond.notepad.R
 import ir.beyond.notepad.data.model.RecyclerNotesModel
 import ir.beyond.notepad.databinding.ListItemNotesBinding
 
@@ -30,7 +34,18 @@ class NotesAdapter(
 
         fun setData(data : RecyclerNotesModel){
             binding.txtTitleNotes.text = data.title
+            binding.imgDeleteNotesRecycler.setOnClickListener {
+                AlertDialog.Builder(ContextThemeWrapper(context , R.style.CustomAlertDialog))
+                    .setTitle("delete note")
+                    .setMessage("delete note?")
+                    .setIcon(R.drawable.ic_delete)
+                    .setNegativeButton("yes"){_ , _ ->
 
+                    }
+                    .setPositiveButton("no"){_ , _ ->}
+                    .create()
+                    .show()
+            }
         }
 
     }
@@ -41,5 +56,7 @@ class NotesAdapter(
             notifyItemInserted(allData.size)
         }
     }
-
+    private fun showText(text:String){
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+    }
 }

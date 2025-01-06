@@ -2,6 +2,7 @@ package ir.beyond.notepad.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,11 +22,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initRecycler()
+
         binding.imgAddNotes.setOnClickListener {
             val intent = Intent(this , AddNotesActivity::class.java)
             startActivity(intent)
         }
-
 
     }
 

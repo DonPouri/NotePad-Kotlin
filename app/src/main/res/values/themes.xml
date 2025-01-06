@@ -6,4 +6,8 @@
     </style>
 
     <style name="Theme.NotePad" parent="Base.Theme.NotePad" />
+
+    <style name="CustomAlertDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">@color/colorBlue</item>
+    </style>
 </resources>
