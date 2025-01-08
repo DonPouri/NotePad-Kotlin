@@ -86,6 +86,40 @@ class Notes_Dao(private val db:DBHelper
 
     }
 
+    fun getNotesById(id:Int):DBNotesModel{
+
+        val database = db.readableDatabase
+        val query = "SELECT * FROM ${DBHelper.NOTES_TABLE} WHERE ${DBHelper.NOTES_ID} = ?"
+        cursor = database.rawQuery(query , arrayOf(id.toString()))
+        val data = getData()
+        cursor.close()
+        database.close()
+
+
+        return data
+
+    }
+
+    private fun getData(): DBNotesModel {
+        val data = DBNotesModel(0,"" , "" , "","")
+
+        try {
+
+            if(cursor.moveToFirst()){
+                data.id = cursor.getInt(getIndext(DBHelper.NOTES_ID))
+                data.title = cursor.getString(getIndext(DBHelper.NOTES_TITLE))
+                data.detail = cursor.getString(getIndext(DBHelper.NOTES_DETAIL))
+                data.deletestate = cursor.getString(getIndext(DBHelper.NOTES_DELETE_STATE))
+                data.date = cursor.getString(getIndext(DBHelper.NOTES_DATE))
+            }
+
+        }catch (e:Exception){
+            Log.e("ERROR" , e.message.toString())
+        }
+
+        return data
+    }
+
     fun getIndext(name:String) = cursor.getColumnIndex(name)
 
 }

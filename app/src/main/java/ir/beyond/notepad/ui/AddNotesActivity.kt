@@ -1,6 +1,7 @@
 package ir.beyond.notepad.ui
 
 import android.os.Bundle
+import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ir.beyond.notepad.utils.PersianDate
@@ -18,7 +19,21 @@ class AddNotesActivity : AppCompatActivity() {
         binding = ActivityAddNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val type = intent.getBooleanExtra("newNotes" , true)
+        val id = intent.getIntExtra("notesId" , 0)
+
+
         val dao = Notes_Dao(DBHelper(this))
+
+        if(type){
+            binding.txtDate.text = getDate()
+        }else{
+            val notes = dao.getNotesById(id)
+            val edit = Editable.Factory()
+            binding.edtTitleNote.text = edit.newEditable(notes.title)
+            binding.edtDetailNote.text = edit.newEditable(notes.detail)
+            binding.txtDate.text = notes.date
+        }
 
         binding.btnSave.setOnClickListener {
 
@@ -28,7 +43,10 @@ class AddNotesActivity : AppCompatActivity() {
             if (title.isNotEmpty()) {
 
                 val notes = DBNotesModel(0, title, detail, DBHelper.FALSE_STATE, getDate())
-                val resualt = dao.saveNotes(notes)
+                val resualt = if(type)
+                    dao.saveNotes(notes)
+                else
+                    dao.editNotes(id , notes)
                 if (resualt){
                     showText("saved!")
                     finish()

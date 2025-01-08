@@ -1,6 +1,7 @@
 package ir.beyond.notepad.adapter
 
 import android.app.Activity
+import android.content.Intent
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -11,6 +12,7 @@ import ir.beyond.notepad.data.DBHelper
 import ir.beyond.notepad.data.dao.Notes_Dao
 import ir.beyond.notepad.data.model.RecyclerNotesModel
 import ir.beyond.notepad.databinding.ListItemNotesBinding
+import ir.beyond.notepad.ui.AddNotesActivity
 
 class NotesAdapter(
     private val context: Activity ,
@@ -55,6 +57,11 @@ class NotesAdapter(
                     .setPositiveButton("no"){_ , _ ->}
                     .create()
                     .show()
+            }
+            binding.root.setOnClickListener {
+                val intent = Intent(context , AddNotesActivity::class.java)
+                intent.putExtra("notesis" , data.id)
+                context.startActivity(intent)
             }
         }
 
