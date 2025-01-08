@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         dao = Notes_Dao(DBHelper(this))
         val data = dao.getNotesForRecycler(DBHelper.FALSE_STATE)
-        adapter = NotesAdapter(this , data)
+        adapter = NotesAdapter(this , data , dao)
 
         binding.recyclerNotes.layoutManager = LinearLayoutManager(
             this , RecyclerView.VERTICAL , false)

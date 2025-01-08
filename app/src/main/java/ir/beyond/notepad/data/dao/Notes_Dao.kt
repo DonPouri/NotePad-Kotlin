@@ -23,6 +23,25 @@ class Notes_Dao(private val db:DBHelper
 
     }
 
+    fun editNotes(id:Int , state:String) : Boolean{
+
+        val database = db.writableDatabase
+        contentValues.clear()
+        contentValues.put(DBHelper.NOTES_DELETE_STATE , state)
+        val resualt = database.update(
+            DBHelper.NOTES_TABLE ,
+            contentValues ,
+            "${DBHelper.NOTES_ID} = ?" ,
+            arrayOf(id.toString())
+        )
+        database.close()
+        return resualt > 0
+    }
+
+    fun editNotes(id:Int , notes:DBNotesModel){
+
+    }
+
     private fun setContentValues(notes: DBNotesModel) {
         contentValues.clear()
         contentValues.put(DBHelper.NOTES_TITLE ,notes.title)
@@ -30,6 +49,8 @@ class Notes_Dao(private val db:DBHelper
         contentValues.put(DBHelper.NOTES_DELETE_STATE ,notes.deletestate)
         contentValues.put(DBHelper.NOTES_DATE ,notes.date)
     }
+
+
 
     fun getNotesForRecycler(value:String):ArrayList<RecyclerNotesModel>{
 

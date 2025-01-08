@@ -7,12 +7,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.recyclerview.widget.RecyclerView
 import ir.beyond.notepad.R
+import ir.beyond.notepad.data.DBHelper
+import ir.beyond.notepad.data.dao.Notes_Dao
 import ir.beyond.notepad.data.model.RecyclerNotesModel
 import ir.beyond.notepad.databinding.ListItemNotesBinding
 
 class NotesAdapter(
     private val context: Activity ,
-    private var allData : ArrayList<RecyclerNotesModel>
+    private var allData : ArrayList<RecyclerNotesModel> ,
+    private val dao : Notes_Dao
     ):RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
 
@@ -34,13 +37,20 @@ class NotesAdapter(
 
         fun setData(data : RecyclerNotesModel){
             binding.txtTitleNotes.text = data.title
+
             binding.imgDeleteNotesRecycler.setOnClickListener {
                 AlertDialog.Builder(ContextThemeWrapper(context , R.style.CustomAlertDialog))
                     .setTitle("delete note")
                     .setMessage("delete note?")
                     .setIcon(R.drawable.ic_delete)
                     .setNegativeButton("yes"){_ , _ ->
-
+                        val resualt = dao.editNotes(data.id , DBHelper.TRUE_STATE)
+                        if (resualt) {
+                            showText("note deleted")
+                            allData.removeAt(adapterPosition)
+                            notifyItemRemoved(adapterPosition)
+                        }else
+                            showText("not deleted")
                     }
                     .setPositiveButton("no"){_ , _ ->}
                     .create()
