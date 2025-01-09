@@ -38,8 +38,17 @@ class Notes_Dao(private val db:DBHelper
         return resualt > 0
     }
 
-    fun editNotes(id:Int , notes:DBNotesModel){
+    fun editNotes(id:Int , notes:DBNotesModel):Boolean{
 
+        val database = db.writableDatabase
+        setContentValues(notes)
+        val resualt =database.update(
+            DBHelper.NOTES_TABLE , contentValues , "${DBHelper.NOTES_ID} = ?",
+            arrayOf(id.toString())
+        )
+        database.close()
+
+        return resualt > 0
     }
 
     private fun setContentValues(notes: DBNotesModel) {

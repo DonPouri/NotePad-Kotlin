@@ -45,8 +45,9 @@ class AddNotesActivity : AppCompatActivity() {
                 val notes = DBNotesModel(0, title, detail, DBHelper.FALSE_STATE, getDate())
                 val resualt = if(type)
                     dao.saveNotes(notes)
-                else
-                    dao.editNotes(id , notes)
+                else {
+                    dao.editNotes(id, notes)
+                }
                 if (resualt){
                     showText("saved!")
                     finish()

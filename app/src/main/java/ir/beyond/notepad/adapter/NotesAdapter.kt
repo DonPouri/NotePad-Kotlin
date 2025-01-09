@@ -1,5 +1,6 @@
 package ir.beyond.notepad.adapter
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
@@ -67,11 +68,10 @@ class NotesAdapter(
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun changeData(data:ArrayList<RecyclerNotesModel>){
-        if (data.size > allData.size){
             allData = data
-            notifyItemInserted(allData.size)
-        }
+            notifyDataSetChanged()
     }
     private fun showText(text:String){
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
