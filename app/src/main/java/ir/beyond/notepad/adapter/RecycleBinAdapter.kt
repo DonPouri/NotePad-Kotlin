@@ -46,7 +46,7 @@ class RecycleBinAdapter(
                     .setMessage("delete note?")
                     .setIcon(R.drawable.ic_delete)
                     .setNegativeButton("yes") { _, _ ->
-                        val resualt = dao.editNotes(data.id, DBHelper.TRUE_STATE)
+                        val resualt = dao.deleteNotes(data.id)
                         if (resualt) {
                             showText("note deleted")
                             allData.removeAt(adapterPosition)
@@ -60,13 +60,13 @@ class RecycleBinAdapter(
             }
             binding.imgRestore.setOnClickListener {
                 AlertDialog.Builder(ContextThemeWrapper(context, R.style.CustomAlertDialog))
-                    .setTitle("delete note")
-                    .setMessage("delete note?")
+                    .setTitle("restore note")
+                    .setMessage("restore note?")
                     .setIcon(R.drawable.ic_delete)
                     .setNegativeButton("yes") { _, _ ->
-                        val resualt = dao.editNotes(data.id, DBHelper.TRUE_STATE)
+                        val resualt = dao.editNotes(data.id, DBHelper.FALSE_STATE)
                         if (resualt) {
-                            showText("note deleted")
+                            showText("note resoterd")
                             allData.removeAt(adapterPosition)
                             notifyItemRemoved(adapterPosition)
                         } else

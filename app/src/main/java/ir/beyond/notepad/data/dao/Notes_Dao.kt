@@ -131,4 +131,18 @@ class Notes_Dao(private val db:DBHelper
 
     fun getIndext(name:String) = cursor.getColumnIndex(name)
 
+    fun deleteNotes(id:Int) : Boolean{
+
+        val database = db.writableDatabase
+        contentValues.clear()
+
+        val resualt = database.delete(
+            DBHelper.NOTES_TABLE ,
+            "${DBHelper.NOTES_ID} = ?" ,
+            arrayOf(id.toString())
+        )
+        database.close()
+        return resualt > 0
+    }
+
 }
