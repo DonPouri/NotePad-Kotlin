@@ -1,8 +1,9 @@
 package ir.beyond.notepad.adapter
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -16,16 +17,19 @@ import ir.beyond.notepad.databinding.ListItemNotesBinding
 import ir.beyond.notepad.ui.AddNotesActivity
 
 class NotesAdapter(
-    private val context: Activity ,
-    private var allData : ArrayList<RecyclerNotesModel> ,
+    private val context: Context ,
     private val dao : Notes_Dao
     ):RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
 
+    private var allData : ArrayList<RecyclerNotesModel>
 
+    init {
+        allData = dao.getNotesForRecycler(DBHelper.FALSE_STATE)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         NotesViewHolder(
-            ListItemNotesBinding.inflate(context.layoutInflater , parent , false)
+            ListItemNotesBinding.inflate(LayoutInflater.from(context) , parent , false)
         )
 
     override fun getItemCount(): Int = allData.size

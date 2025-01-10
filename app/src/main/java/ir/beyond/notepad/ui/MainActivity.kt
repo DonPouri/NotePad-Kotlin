@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("newNote" , true)
             startActivity(intent)
         }
+        binding.txtRecycleBin.setOnClickListener {
+            val intent = Intent(this , RecycleBinActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -41,8 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun initRecycler(){
 
         dao = Notes_Dao(DBHelper(this))
-        val data = dao.getNotesForRecycler(DBHelper.FALSE_STATE)
-        adapter = NotesAdapter(this , data , dao)
+        adapter = NotesAdapter(this , dao)
 
         binding.recyclerNotes.layoutManager = LinearLayoutManager(
             this , RecyclerView.VERTICAL , false)
